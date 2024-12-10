@@ -63,7 +63,7 @@ export default function AddUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your e-mail address"
+                placeholder="Enter your email address"
                 name="email"
                 value={email}
                 onChange={(e) => onInputChange(e)}
