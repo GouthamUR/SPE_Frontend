@@ -2,6 +2,14 @@ import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
+// const MINIKUBE_IP = "localhost"; 
+// const PORT = "8081";
+
+const MINIKUBE_IP = "192.168.49.2"; 
+const PORT = "30008";
+
+const BASE_URL = `http://${MINIKUBE_IP}:${PORT}`;
+
 export default function ViewUser() {
   const [user, setUser] = useState({
     name: "",
@@ -16,7 +24,7 @@ export default function ViewUser() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8081/user/${id}`);
+    const result = await axios.get(`${BASE_URL}/user/${id}`);
     setUser(result.data);
   };
 

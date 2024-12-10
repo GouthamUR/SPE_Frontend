@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
+// const MINIKUBE_IP = "localhost"; 
+// const PORT = "8081";
+
+const MINIKUBE_IP = "192.168.49.2"; 
+const PORT = "30008";
+
+
+const BASE_URL = `http://${MINIKUBE_IP}:${PORT}`;
+
 export default function Home() {
   const [users, setUsers] = useState([]);
 
@@ -12,12 +21,13 @@ export default function Home() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8081/users");
+    const result = await axios.get(`${BASE_URL}/users`);
+    // const result = await axios.get("http://localhost:8081/users");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8081/user/${id}`);
+    await axios.delete(`${BASE_URL}/user/${id}`);
     loadUsers();
   };
 
