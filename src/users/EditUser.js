@@ -2,6 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
+// const MINIKUBE_IP = "localhost"; 
+// const PORT = "8081";
+
+const MINIKUBE_IP = "192.168.49.2"; 
+const PORT = "30008";
+
+const BASE_URL = `http://${MINIKUBE_IP}:${PORT}`;
+
 export default function EditUser() {
   let navigate = useNavigate();
 
@@ -25,12 +33,12 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8081/user/${id}`, user);
+    await axios.put(`${BASE_URL}/user/${id}`, user);
     navigate("/");
   };
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8081/user/${id}`);
+    const result = await axios.get(`${BASE_URL}/user/${id}`);
     setUser(result.data);
   };
 

@@ -2,6 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// const MINIKUBE_IP = "localhost"; 
+// const PORT = "8081";
+
+const MINIKUBE_IP = "192.168.49.2"; 
+const PORT = "30008";
+
+const BASE_URL = `http://${MINIKUBE_IP}:${PORT}`;
+
 export default function AddUser() {
   let navigate = useNavigate();
 
@@ -19,7 +27,7 @@ export default function AddUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8081/user", user);
+    await axios.post(`${BASE_URL}/user`, user);
     navigate("/");
   };
 
